@@ -70,7 +70,8 @@ class LGGCFX_Tool():
         """
         try:
             # 使用eval计算自定义公式，a=fps, b=seconds
-            total_frames = eval(formula)
+            # 将公式中的a和b映射到实际参数值
+            total_frames = eval(formula, {'__builtins__': None}, {'a': fps, 'b': seconds})
             # 确保结果为整数
             total_frames = int(total_frames)
         except Exception as e:
