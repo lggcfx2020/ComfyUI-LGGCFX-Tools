@@ -1,0 +1,33 @@
+{
+    "LGGCFX_time_frame": {
+        "title": "🧮LGGCFX帧率计算器",
+        "inputs": {},
+        "widgets": {
+            "fps": "帧率",
+            "seconds": "秒数",
+            "formula": "公式"
+        },
+        "outputs": {
+            "fps": "帧率",
+            "fps_float": "浮点帧率",
+            "seconds": "秒数",
+            "total_frames": "总帧数"
+        }
+    },
+    "LGGCFX_resolution": {
+        "title": "📹LGGCFX视频分辨率切换",
+        "inputs": {
+            "preset_size": "预设大小"
+        },
+        "widgets": {
+            "use_custom_size": "使用自定义大小",
+            "custom_width": "自定义宽度",
+            "custom_height": "自定义高度",
+            "use_landscape_screen": "使用横屏"
+        },
+        "outputs": {
+            "width": "宽度",
+            "height": "高度"
+        }
+    }
+}

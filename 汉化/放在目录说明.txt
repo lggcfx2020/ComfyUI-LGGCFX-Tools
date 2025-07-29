@@ -1,0 +1,1 @@
+放在 ComfyUI\custom_nodes\ComfyUI-DD-Translation\zh-CN\Nodes\ComfyUI-LGGCFX-Tools.json
