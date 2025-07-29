@@ -108,25 +108,25 @@ class LGGCFX_resolution:
     # - 正方形格式: 宽=高，适合社交媒体
     # - LatLong格式: 2:1比例，适合360度全景视频
     size_map = {
-        "4320x7680 (8K竖屏)": (4320, 7680),
-        "3240x5760 (6K竖屏)": (3240, 5760),
-        "2160x3840 (4K竖屏UHD)": (2160, 3840),
-        "1080x1920 (竖屏FHD)": (1080, 1920),
-        "720x1280 (竖屏HD)": (720, 1280),
-        "544x960 (竖屏)": (544, 960),
-        "480x832 (竖屏)": (480, 832),
-        "432x768 (竖屏)": (432, 768),
+        "768x432 (横屏)": (768, 432),
+        "832x480 (横屏)": (832, 480),
+        "960x544 (横屏)": (960, 544),
+        "1280x720 (横屏HD)": (1280, 720),
+        "1920x1080 (横屏FHD)": (1920, 1080),
+        "3840x2160 (4K横屏UHD)": (3840, 2160),
+        "5760x3240 (6K横屏)": (5760, 3240),
+        "7680x4320 (8K横屏)": (7680, 4320),
 
-        "1024x1024 (1K)": (1024, 1024),
-        "2048x2048 (2K)": (2048, 2048),
-        "4096x4096 (4K)": (4096, 4096),
-        "6144x6144 (6K)": (6144, 6144),
-        "8192x8192 (8K)": (8192, 8192),
+        "2048x1024 (2K横屏2)": (2048, 1024),
+        "4096x2048 (4K横屏2)": (4096, 2048),
+        "6144x3072 (6K横屏2)": (6144, 3072),
+        "8192x4096 (8K横屏2)": (8192, 4096),
 
-        "2048x1024 (2K_LatLong)": (2048, 1024),
-        "4096x2048 (4K_LatLong)": (4096, 2048),
-        "6144x3072 (6K_LatLong)": (6144, 3072),
-        "8192x4096 (8K_LatLong)": (8192, 4096),
+        "1024x1024 (1K正方屏)": (1024, 1024),
+        "2048x2048 (2K正方屏)": (2048, 2048),
+        "4096x4096 (4K正方屏)": (4096, 4096),
+        "6144x6144 (6K正方屏)": (6144, 6144),
+        "8192x8192 (8K正方屏)": (8192, 8192),
     }
 
     def __init__(self):
@@ -143,7 +143,7 @@ class LGGCFX_resolution:
                     list(cls.size_map.keys()),
                     {"default": "480x832 (竖屏)"}
                 ),
-                "use_landscape_screen": ("BOOLEAN", {"default": False, "label": "转成横屏"}),
+                "use_vertical_screen": ("BOOLEAN", {"default": False, "label": "转成竖屏"}),
             },
         }
     
@@ -152,29 +152,38 @@ class LGGCFX_resolution:
     FUNCTION = "resolution"
     CATEGORY = "Utilities"
         
-    def resolution(self, use_custom_size, custom_width, custom_height, preset_size,use_landscape_screen):
+    def resolution(self, use_custom_size, custom_width, custom_height, preset_size,use_vertical_screen):
         #logger.debug(f'执行后重置触发器resolution：\t{use_reversal}\n')
         """根据输入参数返回选定的分辨率
 
         Args:
-            use_landscape_screen (bool): 是否反转宽和高
+            use_custom_size (bool): 是否使用自定义分辨率
             custom_width (int): 自定义宽度值
             custom_height (int): 自定义高度值
             preset_size (str): 预设分辨率选项
+            use_vertical_screen (bool): 是否反转宽和高
 
         Returns:
             tuple: (width, height) - 选定的分辨率宽度和高度
         """
+
+        #是否使用自定义分辨率
         if use_custom_size:
-                return (custom_width, custom_height)
+            width, height = custom_width, custom_height
+                #return (custom_width, custom_height)
         else:
             # 根据选择的预设尺寸更新宽高
             width, height = self.size_map[preset_size]
         
-        # 应用宽高反转
-        if use_landscape_screen:
-            width, height = height, width
-        
+        # 仅当宽度大于高度时才反转以确保竖屏
+        if use_vertical_screen:
+            if width > height:
+                width, height = height, width
+        #横屏
+        else:
+            if width < height:
+                width, height = height,width
+
         # 返回更新后的宽高值
         return (width, height)
 

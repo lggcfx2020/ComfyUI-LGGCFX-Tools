@@ -23,7 +23,7 @@
             "use_custom_size": "使用自定义大小",
             "custom_width": "自定义宽度",
             "custom_height": "自定义高度",
-            "use_landscape_screen": "使用横屏"
+            "use_vertical_screen": "使用竖屏"
         },
         "outputs": {
             "width": "宽度",
