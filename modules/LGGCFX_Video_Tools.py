@@ -137,11 +137,11 @@ class LGGCFX_resolution:
         return {
             "required": {
                 "use_custom_size": ("BOOLEAN", {"default": False}),
-                "custom_width": ("INT", {"default": 480, "min": 1, "max": 16384, "step": 1}),
-                "custom_height": ("INT", {"default": 832, "min": 1, "max": 16384, "step": 1}),
+                "custom_width": ("INT", {"default": 832, "min": 1, "max": 16384, "step": 1}),
+                "custom_height": ("INT", {"default": 480, "min": 1, "max": 16384, "step": 1}),
                 "preset_size": (
                     list(cls.size_map.keys()),
-                    {"default": "480x832 (竖屏)"}
+                    {"default": "768x432 (横屏)"}
                 ),
                 "use_vertical_screen": ("BOOLEAN", {"default": False, "label": "转成竖屏"}),
             },
