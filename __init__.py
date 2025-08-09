@@ -10,6 +10,7 @@ NODE_CLASS_MAPPINGS = {}
 NODE_DISPLAY_NAME_MAPPINGS = {}
 module_list = [
     "LGGCFX_Video_Tools",
+    "LGGCFX_VRAM_Setter"
 ]
 for module_name in module_list:
     imported_module = importlib.import_module(".modules.{}".format(module_name), __name__)
