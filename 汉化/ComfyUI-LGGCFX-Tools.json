@@ -1,26 +1,27 @@
 {
     "LGGCFX_time_frame": {
-        "title": "🧮LGGCFX帧率计算器",
+        "title": "🧮LGGCFX_帧率计算器",
         "inputs": {},
         "widgets": {
-            "fps": "帧率",
+            "fps": "每秒帧数",
             "seconds": "秒数",
             "formula": "公式"
         },
         "outputs": {
-            "fps": "帧率",
-            "fps_float": "浮点帧率",
+            "fps": "每秒帧数",
+            "fps_float": "浮点型每秒帧数",
             "seconds": "秒数",
             "total_frames": "总帧数"
         }
     },
     "LGGCFX_resolution": {
-        "title": "📹LGGCFX视频分辨率切换",
+        "title": "📹LGGCFX_视频分辨率切换",
         "inputs": {
-            "preset_size": "预设大小"
+            "preset_size": "预设尺寸"
         },
         "widgets": {
-            "use_custom_size": "使用自定义大小",
+            "preset_size": "预设尺寸",
+            "use_custom_size": "使用自定义尺寸",
             "custom_width": "自定义宽度",
             "custom_height": "自定义高度",
             "use_vertical_screen": "使用竖屏"
@@ -28,6 +29,34 @@
         "outputs": {
             "width": "宽度",
             "height": "高度"
+        }
+    },
+    "LGGCFX_audio": {
+        "title": "🎵LGGCFX_音频",
+        "inputs": {
+            "audio": "音频"
+        },
+        "widgets": {
+            "audio": "音频",
+            "start_time": "开始时间",
+            "duration": "时长"
+        },
+        "outputs": {
+            "audio": "音频",
+            "duration": "时长"
+        }
+    },
+    "VRAMReserver": {
+        "title": "⚙️LGGCFX_设置预留显存（GB）",
+        "inputs": {
+            "anything": "任意"
+        },
+        "widgets": {
+            "anything": "任意",
+            "reserved": "预留"
+        },
+        "outputs": {
+            "output": "任意类型"
         }
     }
 }
