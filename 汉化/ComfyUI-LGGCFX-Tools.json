@@ -38,22 +38,29 @@
         },
         "widgets": {
             "audio": "音频",
-            "start_time": "开始时间",
-            "duration": "时长"
+            "start_time": "开始时间(MM:SS)",
+            "end_time": "结束时间(MM:SS)",
+            "fps": "帧率",
+            "formula": "公式"
         },
         "outputs": {
             "audio": "音频",
-            "duration": "时长"
+            "duration_seconds": "时长(秒)",
+            "duration_ms": "时长(毫秒)",
+            "fps": "帧率",
+            "fps_float": "浮点帧率",
+            "total_frames": "总帧数"
         }
     },
     "VRAMReserver": {
         "title": "⚙️LGGCFX_设置预留显存（GB）",
         "inputs": {
-            "anything": "任意"
+            "anything": "任意内容"
         },
         "widgets": {
-            "anything": "任意",
-            "reserved": "预留"
+            "anything": "任意内容",
+            "reserved": "预留",
+            "offload_all_vram": "显存卸载"
         },
         "outputs": {
             "output": "任意类型"

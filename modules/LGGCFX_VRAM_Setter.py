@@ -1,7 +1,7 @@
 from typing import Any as any_type
 from comfy import model_management
 from ..tool.logger import logger
-
+import gc
 # 自定义字符串代理类，用于在ComfyUI节点中表示'接受任何类型'的输入
 class AnyTypeProxy(str):
     # 重写相等比较方法，始终返回True
@@ -29,6 +29,7 @@ class VRAMReserver:
                     "step": 0.1,
                     "display": "reserved (GB)"
                 }),
+                "offload_all_vram": ("BOOLEAN", {"default": False})
             },
             # 隐藏参数，由ComfyUI内部使用
             "hidden": {"unique_id": "UNIQUE_ID", "extra_pnginfo": "EXTRA_PNGINFO"}
@@ -46,12 +47,23 @@ class VRAMReserver:
     # 节点分类
     CATEGORY = "Utilities"
 
-    def set_reserved_vram(self, anything, reserved, unique_id=None, extra_pnginfo=None):
+    def set_reserved_vram(self, anything, reserved,offload_all_vram, unique_id=None, extra_pnginfo=None):
         # 将预留显存设置为指定的值（转换为字节）
         model_management.EXTRA_RESERVED_VRAM = int(reserved * 1024 * 1024 * 1024)
         # 打印设置信息到控制台
         logger.info(f'额外保留的显存={reserved}GB')
         # 返回输入的anything，保持节点链的连续性
+
+        # 当需要释放所有VRAM时执行以下操作
+        if offload_all_vram:
+            # 卸载所有加载的模型，释放大量显存
+            model_management.unload_all_models()
+            # 清理各种设备类型的缓存
+            model_management.soft_empty_cache()
+            # 执行Python垃圾回收，释放未引用的对象
+            gc.collect()
+            logger.info(f'显存回收成功，已释放最大可用空间')
+
         return (anything,)
 
 # 节点类映射，用于ComfyUI注册节点
